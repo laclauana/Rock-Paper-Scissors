@@ -76,39 +76,39 @@ const obtenerEleccionComputadora = () => {
 const decidirPuntaje = () => {
 	if (eleccionComputadora == 'piedra') {
 		if (eleccionUsuaria == 'piedra') {
-			resultadoTexto.textContent = 'Empate! 😐';
+			resultadoTexto.textContent = 'Tie! 😐';
 		} else if (eleccionUsuaria == 'papel') {
-			resultadoTexto.textContent = 'Ganaste :)';
+			resultadoTexto.textContent = 'You won :)';
 			puntosUsuaria++;
 			puntajesUsuaria.textContent = puntosUsuaria;
 		} else {
 			puntosComputadora++;
 			puntajesComputadora.textContent = puntosComputadora;
-			resultadoTexto.textContent = 'Perdiste 💩';
+			resultadoTexto.textContent = 'You lost 💩';
 		}
 	} else if (eleccionComputadora == 'papel') {
 		if (eleccionUsuaria == 'papel') {
-			resultadoTexto.textContent = 'Empate! 😐';
+			resultadoTexto.textContent = 'Tie! 😐';
 		} else if (eleccionUsuaria == 'tijera') {
-			resultadoTexto.textContent = 'Ganaste 😍';
+			resultadoTexto.textContent = 'You won 😍';
 			puntosUsuaria++;
 			puntajesUsuaria.textContent = puntosUsuaria;
 		} else {
 			puntosComputadora++;
 			puntajesComputadora.textContent = puntosComputadora;
-			resultadoTexto.textContent = 'Perdiste :(';
+			resultadoTexto.textContent = 'You lost :(';
 		}
 	} else if (eleccionComputadora == 'tijera') {
 		if (eleccionUsuaria == 'tijera') {
-			resultadoTexto.textContent = 'Empate! 😐';
+			resultadoTexto.textContent = 'Tie! 😐';
 		} else if (eleccionUsuaria == 'piedra') {
-			resultadoTexto.textContent = 'Ganaste :)';
+			resultadoTexto.textContent = 'You won :)';
 			puntosUsuaria++;
 			puntajesUsuaria.textContent = puntosUsuaria;
 		} else {
 			puntosComputadora++;
 			puntajesComputadora.textContent = puntosComputadora;
-			resultadoTexto.textContent = 'Perdiste :(';
+			resultadoTexto.textContent = 'You lost :(';
 		}
 	}
 };
