@@ -11,4 +11,4 @@ HTML, CSS and Javascript.
 ### Here's my job! 
 
 Have fun facing Anaclette. She pretty much rocks. 
-[https://anaclette.github.io/RockPaperSissors/]
+[https://anaclette.github.io/Rock-Paper-Scissors/]
