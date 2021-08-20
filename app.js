@@ -1,114 +1,76 @@
-let puntajesUsuaria = document.querySelector('.puntaje-usuaria p');
-let puntajesComputadora = document.querySelector('.puntaje-computadora p');
+// Variable declaration
+const userScore = document.querySelector('.user-score p');
+const computerScore = document.querySelector('.computer-score p');
+const buttons = document.querySelectorAll('button')
+const userHand = document.querySelector('.user-hand');
+const computerHand = document.querySelector('.computer-hand');
+const board = document.querySelector('.board');
+const result = document.querySelector('h3');
+let userCount = 0;
+let computerCount = 0;
+let computerChoice = '';
+let userChoice = '';
+const OPTIONS = {
+	rock: 'rock',
+	paper: 'paper',
+	scissors: 'scissors'
+}
 
-let puntosUsuaria = 0;
-let puntosComputadora = 0;
+const play = () => {
+	buttons.forEach(button => 
+		button.onclick = () => {
+		result.textContent = '🤨';
+		computerHand.src = './assets/piedra_computadora.png';
+		userHand.src = './assets/piedra_ada.png';
+		board.classList.add('playing');
+		defineOutcome(button)
+	})
+}
 
-let eleccionComputadora = '';
-let eleccionUsuaria = '';
+play()
 
-let botonPiedra = document.querySelector('.piedra');
-let botonPapel = document.querySelector('.papel');
-let botonTijera = document.querySelector('.tijera');
-
-let resultadoTexto = document.querySelector('.resultado');
-
-let manoUsuaria = document.querySelector('.mano-usuaria');
-let manoComputadora = document.querySelector('.mano-computadora');
-let tablero = document.querySelector('.tablero');
-
-botonPiedra.onclick = () => {
-	resultadoTexto.textContent = '🤨';
-	manoComputadora.src = './assets/piedra_computadora.png';
-	manoUsuaria.src = './assets/piedra_ada.png';
-	tablero.classList.add('jugando');
+const defineOutcome = (item) => {
 	setTimeout(() => {
-		tablero.classList.remove('jugando');
-		eleccionUsuaria = 'piedra';
-		manoUsuaria.src = './assets/piedra_ada.png';
-		obtenerEleccionComputadora();
-		decidirPuntaje();
-	}, 2000);
-};
+		board.classList.remove('playing');
+		if (item.id === OPTIONS.rock) {
+			userChoice = OPTIONS.rock;
+			userHand.src = './assets/piedra_ada.png';
+		} else if (item.id === OPTIONS.paper) {
+			userChoice = OPTIONS.paper;
+			userHand.src = './assets/papel_ada.png';
+		} else {
+			userChoice = OPTIONS.scissors;
+			userHand.src = './assets/tijera_ada.png';
+		}
+		getComputerChoice(computerHand);
+		getResult(computerChoice, userChoice);
+	}, 2000)
+}
 
-botonPapel.onclick = () => {
-	resultadoTexto.textContent = '🤨';
-	manoComputadora.src = './assets/piedra_computadora.png';
-	manoUsuaria.src = './assets/piedra_ada.png';
-	tablero.classList.add('jugando');
-	setTimeout(() => {
-		tablero.classList.remove('jugando');
-		eleccionUsuaria = 'papel';
-		manoUsuaria.src = './assets/papel_ada.png';
-		obtenerEleccionComputadora();
-		decidirPuntaje();
-	}, 2000);
-};
-
-botonTijera.onclick = () => {
-	resultadoTexto.textContent = '🤨';
-	manoComputadora.src = './assets/piedra_computadora.png';
-	manoUsuaria.src = './assets/piedra_ada.png';
-	tablero.classList.add('jugando');
-	setTimeout(() => {
-		tablero.classList.remove('jugando');
-		eleccionUsuaria = 'tijera';
-		manoUsuaria.src = './assets/tijera_ada.png';
-		obtenerEleccionComputadora();
-		decidirPuntaje();
-	}, 2000);
-};
-
-const obtenerEleccionComputadora = () => {
-	let numeroAlAzar = Math.floor(Math.random() * 3);
-	if (numeroAlAzar == 0) {
-		eleccionComputadora = 'piedra';
-		manoComputadora.src = './assets/piedra_computadora.png';
-	} else if (numeroAlAzar == 1) {
-		eleccionComputadora = 'papel';
-		manoComputadora.src = './assets/papel_computadora.png';
+const getComputerChoice = (playerHand) => {
+	let randomNum = Math.floor(Math.random() * 3);
+	if (randomNum == 0) {
+		computerChoice = OPTIONS.rock;
+		playerHand.src = './assets/piedra_computadora.png';
+	} else if (randomNum == 1) {
+		computerChoice = OPTIONS.paper;
+		playerHand.src = './assets/papel_computadora.png';
 	} else {
-		eleccionComputadora = 'tijera';
-		manoComputadora.src = './assets/tijera_computadora.png';
+		computerChoice = OPTIONS.scissors;
+		playerHand.src = './assets/tijera_computadora.png';
 	}
 };
 
-const decidirPuntaje = () => {
-	if (eleccionComputadora == 'piedra') {
-		if (eleccionUsuaria == 'piedra') {
-			resultadoTexto.textContent = 'Tie! 😐';
-		} else if (eleccionUsuaria == 'papel') {
-			resultadoTexto.textContent = 'You won :)';
-			puntosUsuaria++;
-			puntajesUsuaria.textContent = puntosUsuaria;
+const getResult = (optPlayerOne, optPlayerTwo) => {
+	if (optPlayerOne !== userChoice) {
+		if (optPlayerOne === OPTIONS.rock && optPlayerTwo === OPTIONS.scissors || optPlayerOne === OPTIONS.paper && optPlayerTwo === OPTIONS.rock || optPlayerOne === OPTIONS.scissors && optPlayerTwo === OPTIONS.paper) {
+			computerCount++
+			computerScore.textContent = computerCount;
+			result.textContent = 'You lost 😞';
 		} else {
-			puntosComputadora++;
-			puntajesComputadora.textContent = puntosComputadora;
-			resultadoTexto.textContent = 'You lost 💩';
+			userCount++
+			userScore.textContent = userCount;
+			result.textContent = 'You won! 😃';
 		}
-	} else if (eleccionComputadora == 'papel') {
-		if (eleccionUsuaria == 'papel') {
-			resultadoTexto.textContent = 'Tie! 😐';
-		} else if (eleccionUsuaria == 'tijera') {
-			resultadoTexto.textContent = 'You won 😍';
-			puntosUsuaria++;
-			puntajesUsuaria.textContent = puntosUsuaria;
-		} else {
-			puntosComputadora++;
-			puntajesComputadora.textContent = puntosComputadora;
-			resultadoTexto.textContent = 'You lost :(';
-		}
-	} else if (eleccionComputadora == 'tijera') {
-		if (eleccionUsuaria == 'tijera') {
-			resultadoTexto.textContent = 'Tie! 😐';
-		} else if (eleccionUsuaria == 'piedra') {
-			resultadoTexto.textContent = 'You won :)';
-			puntosUsuaria++;
-			puntajesUsuaria.textContent = puntosUsuaria;
-		} else {
-			puntosComputadora++;
-			puntajesComputadora.textContent = puntosComputadora;
-			resultadoTexto.textContent = 'You lost :(';
-		}
-	}
+	} else result.textContent = 'Tie! 😐';
 };

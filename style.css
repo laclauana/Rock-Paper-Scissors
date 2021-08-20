@@ -1,45 +1,58 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rammetto+One&display=swap');
 
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+
 }
 
 body {
-	font-family: 'Montserrat';
-	color: #424242;
+	font-family: 'Rammetto One';
+	color:#fafafa;
+	letter-spacing: 4px;
+	background-color: rgb(247, 197, 105);
 }
 
-section {
-	height: 100vh;
-	background-color: #fafafa;
-}
-
-.puntajes {
+.score {
 	height: 20vh;
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
 }
 
-.puntajes h2 {
-	font-size: 30px;
+h2 {
+	font-size: 1em;
 }
 
-.puntajes p {
+h3 {
+	font-size: 2em;
+	text-align: center;
+	color: rgba(67, 65, 68, 0.932);
+	margin-bottom: 1rem;
+}
+
+.score p {
 	text-align: center;
 	padding: 10px;
 	font-size: 25px;
 }
 
-.tablero button {
+.board {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	transition: opacity 0.5s ease 0.5s;
+}
+
+.board button {
 	width: 100px;
 	height: 100px;
 	font-size: 20px;
 	border-style: solid;
 	border-width: 4px;
-	border-color: #b71b59;
+	border-color: orangered;
 	border-radius: 50%;
 	cursor: pointer;
 	-webkit-transition: all 0.3s;
@@ -48,70 +61,53 @@ section {
 	background-color: #fafafa;
 }
 
-.tablero button:hover {
-	background-color: #b71b59;
-	border-color: #b71b59;
+.board button:hover {
+	background-color: orangered;
+	border-color: orangered;
 }
 
-.tablero button:focus {
+.board button:focus {
 	outline: 0;
 }
 
-.tablero button img {
+.board button img {
 	height: 50px;
 }
 
-.tablero {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	transition: opacity 0.5s ease 0.5s;
-}
-
-.resultado {
-	text-align: center;
-	font-size: 50px;
-	margin-bottom: 1rem;
-}
-
-.manos img {
+.hands img {
 	width: 250px;
 }
 
-.manos,
-.opciones {
+.hands,
+.options {
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
 }
-.rojo {
-	background-color: red; /* añadida en JS */
-}
 
-.jugando .manos img {
+.playing .hands img {
 	animation: shake 2s ease;
 }
 
 @media only screen and (max-width: 768px) {
-	.manos img {
+	.hands img {
 		width: 150px;
 	}
 
-	.puntajes h2 {
+	.score h2 {
 		font-size: 18px;
 	}
 
-	.resultado {
+	h3 {
 		font-size: 28px;
 	}
 
-	.tablero button {
+	.board button {
 		width: 80px;
 		height: 80px;
 	}
 
-	.tablero button img {
+	.board button img {
 		height: 40px;
 	}
 }
